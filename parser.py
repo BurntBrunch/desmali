@@ -163,7 +163,7 @@ class Parser(object):
                 label = self.labels[jumplabel]
 
                 op.jumplabel = label
-                label.branches += op
+                label.branches.add(op)
 
             return op
 
