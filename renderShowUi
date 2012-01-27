@@ -1,0 +1,2310 @@
+.method private renderShowUi(IIIIILjava/lang/String;JLcom/sonyericsson/extras/liveview/utils/ElaineBitmap;)V
+    .registers 36
+    .parameter "action"
+    .parameter "total"
+    .parameter "unread"
+    .parameter "index"
+    .parameter "iconId"
+    .parameter "header"
+    .parameter "timestamp"
+    .parameter "bitmapObject"
+
+    .prologue
+    .line 1884
+    const/16 v16, 0x0
+
+    .line 1885
+    .local v16, step:I
+    const/4 v10, 0x0
+
+    .line 1886
+    .local v10, iconIndex:I
+    const/4 v14, 0x0
+
+    .line 1887
+    .local v14, mainMenuAnnounceOverride:Z
+    const/4 v5, 0x0
+
+    .line 1889
+    .local v5, clickable:Z
+    const-string v22, "__iconType: %d\n  msgType: %d\n  total: %d\n  unread: %d\n  index: %d"
+
+    const/16 v23, 0x5
+
+    move/from16 v0, v23
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    move-object/from16 v23, v0
+
+    const/16 v24, 0x0
+
+    invoke-static/range {p5 .. p5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v25
+
+    aput-object v25, v23, v24
+
+    const/16 v24, 0x1
+
+    invoke-static/range {p1 .. p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v25
+
+    aput-object v25, v23, v24
+
+    const/16 v24, 0x2
+
+    invoke-static/range {p2 .. p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v25
+
+    aput-object v25, v23, v24
+
+    const/16 v24, 0x3
+
+    invoke-static/range {p3 .. p3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v25
+
+    aput-object v25, v23, v24
+
+    const/16 v24, 0x4
+
+    invoke-static/range {p4 .. p4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v25
+
+    aput-object v25, v23, v24
+
+    invoke-static/range {v22 .. v23}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->BDEBUG(Ljava/lang/String;)V
+
+    .line 1890
+    invoke-direct/range {p0 .. p0}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getMode()I
+
+    move-result v22
+
+    const/16 v23, 0x2
+
+    move/from16 v0, v22
+
+    move/from16 v1, v23
+
+    if-ne v0, v1, :cond_4b
+
+    .line 2198
+    :cond_4a
+    :goto_4a
+    return-void
+
+    .line 1893
+    :cond_4b
+    new-instance v15, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;
+
+    invoke-direct {v15}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;-><init>()V
+
+    .line 1894
+    .local v15, msg:Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;
+    const/16 v22, 0x1
+
+    move/from16 v0, p1
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_344
+
+    .line 1895
+    const/16 v22, 0x5
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->setElementId(I)V
+
+    .line 1946
+    :goto_60
+    new-instance v22, Ljava/lang/StringBuilder;
+
+    const-string v23, "IconIndex: "
+
+    invoke-direct/range {v22 .. v23}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    move-object/from16 v0, v22
+
+    move v1, v10
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    invoke-virtual/range {v22 .. v22}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->BDEBUG(Ljava/lang/String;)V
+
+    .line 1947
+    const/16 v22, 0x52
+
+    move/from16 v0, p5
+
+    move/from16 v1, v22
+
+    if-eq v0, v1, :cond_8b
+
+    .line 1948
+    invoke-direct/range {p0 .. p0}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getMode()I
+
+    move-result v22
+
+    if-nez v22, :cond_4cd
+
+    .line 1949
+    move-object/from16 v0, p0
+
+    move/from16 v1, p5
+
+    invoke-direct {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getIndexFromIcon(I)I
+
+    move-result v10
+
+    .line 1964
+    :cond_8b
+    :goto_8b
+    new-instance v22, Ljava/lang/StringBuilder;
+
+    const-string v23, "Action: "
+
+    invoke-direct/range {v22 .. v23}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    move-object/from16 v0, v22
+
+    move/from16 v1, p1
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    const-string v23, ", IconIndex updated: "
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    move-object/from16 v0, v22
+
+    move v1, v10
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    invoke-virtual/range {v22 .. v22}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->BDEBUG(Ljava/lang/String;)V
+
+    .line 1965
+    if-eqz v5, :cond_535
+
+    .line 1966
+    const/16 v22, 0x1
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 1971
+    :goto_b8
+    move-object v0, v15
+
+    move/from16 v1, p2
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->convertInt(I)[B
+
+    move-result-object v19
+
+    .line 1972
+    .local v19, totalLen:[B
+    const/16 v22, 0x2
+
+    aget-byte v22, v19, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 1973
+    const/16 v22, 0x3
+
+    aget-byte v22, v19, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 1974
+    move-object v0, v15
+
+    move/from16 v1, p3
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->convertInt(I)[B
+
+    move-result-object v20
+
+    .line 1975
+    .local v20, unreadLen:[B
+    const/16 v22, 0x2
+
+    aget-byte v22, v20, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 1976
+    const/16 v22, 0x3
+
+    aget-byte v22, v20, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 1977
+    move-object v0, v15
+
+    move/from16 v1, p4
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->convertInt(I)[B
+
+    move-result-object v11
+
+    .line 1978
+    .local v11, indexLen:[B
+    const/16 v22, 0x2
+
+    aget-byte v22, v11, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 1979
+    const/16 v22, 0x3
+
+    aget-byte v22, v11, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 1981
+    const/16 v22, -0x1
+
+    move v0, v10
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_136
+
+    if-nez v14, :cond_136
+
+    .line 1982
+    const-string v22, "Broken icon data from plugin"
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->ADEBUG(Ljava/lang/String;)V
+
+    .line 1983
+    move-object/from16 v0, p0
+
+    iget v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->lastSentIconIndex:I
+
+    move/from16 v22, v0
+
+    const/16 v23, 0x2
+
+    sub-int v10, v22, v23
+
+    .line 1984
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mHandler:Landroid/os/Handler;
+
+    move-object/from16 v22, v0
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mHandler:Landroid/os/Handler;
+
+    move-object/from16 v23, v0
+
+    const/16 v24, 0xdd
+
+    invoke-virtual/range {v23 .. v24}, Landroid/os/Handler;->obtainMessage(I)Landroid/os/Message;
+
+    move-result-object v23
+
+    invoke-virtual/range {v22 .. v23}, Landroid/os/Handler;->sendMessage(Landroid/os/Message;)Z
+
+    .line 1987
+    :cond_136
+    const/16 v22, 0x4
+
+    move/from16 v0, p1
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_145
+
+    .line 1988
+    add-int/lit8 v10, v10, 0x3
+
+    .line 1989
+    move v0, v10
+
+    move-object/from16 v1, p0
+
+    iput v0, v1, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->lastSentIconIndex:I
+
+    .line 1991
+    :cond_145
+    const/16 v22, 0x2
+
+    move/from16 v0, p1
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_15f
+
+    .line 1992
+    add-int/lit8 v10, v10, 0x3
+
+    .line 1994
+    invoke-direct/range {p0 .. p0}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getMode()I
+
+    move-result v22
+
+    const/16 v23, 0x1
+
+    move/from16 v0, v22
+
+    move/from16 v1, v23
+
+    if-ne v0, v1, :cond_15f
+
+    .line 1996
+    if-eqz v14, :cond_53f
+
+    .line 1997
+    const/16 v10, 0x8d
+
+    .line 2002
+    :cond_15f
+    :goto_15f
+    invoke-virtual {v15, v10}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2004
+    const-string v22, "  action: %d%n  total: %d%n  unread: %d%n  index: %d%n  iconId: %d"
+
+    const/16 v23, 0x5
+
+    move/from16 v0, v23
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    move-object/from16 v23, v0
+
+    const/16 v24, 0x0
+
+    invoke-static/range {p1 .. p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v25
+
+    aput-object v25, v23, v24
+
+    const/16 v24, 0x1
+
+    invoke-static/range {p2 .. p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v25
+
+    aput-object v25, v23, v24
+
+    const/16 v24, 0x2
+
+    invoke-static/range {p3 .. p3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v25
+
+    aput-object v25, v23, v24
+
+    const/16 v24, 0x3
+
+    invoke-static/range {p4 .. p4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v25
+
+    aput-object v25, v23, v24
+
+    const/16 v24, 0x4
+
+    invoke-static {v10}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v25
+
+    aput-object v25, v23, v24
+
+    invoke-static/range {v22 .. v23}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->BDEBUG(Ljava/lang/String;)V
+
+    .line 2005
+    new-instance v22, Ljava/lang/StringBuilder;
+
+    const-string v23, "__ Send icon: "
+
+    invoke-direct/range {v22 .. v23}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    move-object/from16 v0, v22
+
+    move v1, v10
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    invoke-virtual/range {v22 .. v22}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->BDEBUG(Ljava/lang/String;)V
+
+    .line 2007
+    const/16 v21, 0x0
+
+    .line 2009
+    .local v21, useSif:Z
+    const/4 v12, 0x1
+
+    .line 2010
+    .local v12, isLatin:Z
+    if-eqz p9, :cond_1d1
+
+    invoke-virtual/range {p9 .. p9}, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->getTextIcon()Ljava/lang/String;
+
+    move-result-object v22
+
+    if-eqz v22, :cond_1d1
+
+    .line 2011
+    invoke-virtual/range {p9 .. p9}, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->getTextIcon()Ljava/lang/String;
+
+    move-result-object v22
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v22
+
+    invoke-direct {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->isLatinString(Ljava/lang/String;)Z
+
+    move-result v12
+
+    .line 2012
+    if-eqz v12, :cond_1d1
+
+    .line 2013
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, p6
+
+    invoke-direct {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->isLatinString(Ljava/lang/String;)Z
+
+    move-result v12
+
+    .line 2015
+    :cond_1d1
+    if-nez v12, :cond_1d5
+
+    .line 2016
+    const/16 v21, 0x1
+
+    .line 2019
+    :cond_1d5
+    if-nez v21, :cond_543
+
+    .line 2020
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2028
+    :goto_1df
+    if-nez v21, :cond_575
+
+    .line 2029
+    if-eqz p6, :cond_563
+
+    .line 2030
+    const/16 v22, 0x1
+
+    move/from16 v0, v22
+
+    new-array v0, v0, [B
+
+    move-object v4, v0
+
+    .line 2032
+    .local v4, buffer:[B
+    :try_start_1ea
+    const-string v22, "iso-8859-1"
+
+    move-object/from16 v0, p6
+
+    move-object/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+    :try_end_1f3
+    .catch Ljava/io/UnsupportedEncodingException; {:try_start_1ea .. :try_end_1f3} :catch_54d
+
+    move-result-object v4
+
+    .line 2036
+    :goto_1f4
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->convertInt(I)[B
+
+    move-result-object v13
+
+    .line 2037
+    .local v13, lenBuffer:[B
+    const/16 v22, 0x2
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2038
+    const/16 v22, 0x3
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2039
+    const/16 v16, 0x0
+
+    .line 2040
+    :goto_215
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move/from16 v0, v16
+
+    move/from16 v1, v22
+
+    if-lt v0, v1, :cond_555
+
+    .line 2072
+    .end local v4           #buffer:[B
+    .end local v13           #lenBuffer:[B
+    :cond_21f
+    :goto_21f
+    if-nez v21, :cond_600
+
+    .line 2073
+    move-object/from16 v0, p0
+
+    move-wide/from16 v1, p7
+
+    invoke-direct {v0, v1, v2}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->timeAgo(J)Ljava/lang/String;
+
+    move-result-object v18
+
+    .line 2074
+    .local v18, timeAgo:Ljava/lang/String;
+    if-eqz v18, :cond_5ee
+
+    .line 2075
+    const/16 v22, 0x1
+
+    move/from16 v0, v22
+
+    new-array v0, v0, [B
+
+    move-object v4, v0
+
+    .line 2077
+    .restart local v4       #buffer:[B
+    :try_start_232
+    const-string v22, "iso-8859-1"
+
+    move-object/from16 v0, v18
+
+    move-object/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+    :try_end_23b
+    .catch Ljava/io/UnsupportedEncodingException; {:try_start_232 .. :try_end_23b} :catch_5d8
+
+    move-result-object v4
+
+    .line 2081
+    :goto_23c
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->convertInt(I)[B
+
+    move-result-object v13
+
+    .line 2082
+    .restart local v13       #lenBuffer:[B
+    const/16 v22, 0x2
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2083
+    const/16 v22, 0x3
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2084
+    const/16 v16, 0x0
+
+    .line 2085
+    :goto_25d
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move/from16 v0, v16
+
+    move/from16 v1, v22
+
+    if-lt v0, v1, :cond_5e0
+
+    .line 2118
+    .end local v4           #buffer:[B
+    .end local v13           #lenBuffer:[B
+    :cond_267
+    :goto_267
+    if-nez v21, :cond_689
+
+    .line 2119
+    if-eqz p9, :cond_677
+
+    invoke-virtual/range {p9 .. p9}, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->getTextIcon()Ljava/lang/String;
+
+    move-result-object v22
+
+    if-eqz v22, :cond_677
+
+    .line 2120
+    const/16 v22, 0x1
+
+    move/from16 v0, v22
+
+    new-array v0, v0, [B
+
+    move-object v4, v0
+
+    .line 2122
+    .restart local v4       #buffer:[B
+    :try_start_278
+    invoke-virtual/range {p9 .. p9}, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->getTextIcon()Ljava/lang/String;
+
+    move-result-object v22
+
+    const-string v23, "iso-8859-1"
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+    :try_end_281
+    .catch Ljava/io/UnsupportedEncodingException; {:try_start_278 .. :try_end_281} :catch_661
+
+    move-result-object v4
+
+    .line 2126
+    :goto_282
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->convertInt(I)[B
+
+    move-result-object v13
+
+    .line 2127
+    .restart local v13       #lenBuffer:[B
+    const/16 v22, 0x2
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2128
+    const/16 v22, 0x3
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2129
+    const/16 v16, 0x0
+
+    .line 2130
+    :goto_2a3
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move/from16 v0, v16
+
+    move/from16 v1, v22
+
+    if-lt v0, v1, :cond_669
+
+    .line 2164
+    .end local v4           #buffer:[B
+    .end local v13           #lenBuffer:[B
+    :cond_2ad
+    :goto_2ad
+    if-eqz p9, :cond_314
+
+    .line 2165
+    invoke-virtual/range {p9 .. p9}, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->getBitmapIcon()[B
+
+    move-result-object v3
+
+    .line 2166
+    .local v3, bitmap:[B
+    if-eqz v3, :cond_2cb
+
+    move-object/from16 v0, p9
+
+    iget-boolean v0, v0, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->isMenuIcon:Z
+
+    move/from16 v22, v0
+
+    if-eqz v22, :cond_2cf
+
+    move-object v0, v3
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v22
+
+    invoke-direct {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->isBitmapDataBufferFull(I)Z
+
+    move-result v22
+
+    if-eqz v22, :cond_2cf
+
+    .line 2168
+    :cond_2cb
+    invoke-direct/range {p0 .. p0}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getMemoryLowIconData()[B
+
+    move-result-object v3
+
+    .line 2170
+    :cond_2cf
+    const/16 v16, 0x0
+
+    .line 2171
+    :goto_2d1
+    move-object v0, v3
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move/from16 v0, v16
+
+    move/from16 v1, v22
+
+    if-lt v0, v1, :cond_705
+
+    .line 2174
+    if-eqz p9, :cond_314
+
+    move-object/from16 v0, p9
+
+    iget-boolean v0, v0, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->isMenuIcon:Z
+
+    move/from16 v22, v0
+
+    if-eqz v22, :cond_314
+
+    .line 2175
+    move-object/from16 v0, p0
+
+    iget-wide v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mIconByteCount:J
+
+    move-wide/from16 v22, v0
+
+    move-object v0, v3
+
+    array-length v0, v0
+
+    move/from16 v24, v0
+
+    move/from16 v0, v24
+
+    int-to-long v0, v0
+
+    move-wide/from16 v24, v0
+
+    add-long v22, v22, v24
+
+    move-wide/from16 v0, v22
+
+    move-object/from16 v2, p0
+
+    iput-wide v0, v2, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mIconByteCount:J
+
+    .line 2176
+    new-instance v22, Ljava/lang/StringBuilder;
+
+    const-string v23, "__mIconByteCount: "
+
+    invoke-direct/range {v22 .. v23}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    move-object/from16 v0, p0
+
+    iget-wide v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mIconByteCount:J
+
+    move-wide/from16 v23, v0
+
+    invoke-virtual/range {v22 .. v24}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    invoke-virtual/range {v22 .. v22}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->BDEBUG(Ljava/lang/String;)V
+
+    .line 2180
+    .end local v3           #bitmap:[B
+    :cond_314
+    invoke-virtual {v15}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->getPayloadOffset()I
+
+    move-result v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->setElementLen(I)V
+
+    .line 2181
+    const/16 v22, 0x1
+
+    move/from16 v0, p1
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_713
+
+    .line 2182
+    sget-object v22, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol$ProtocolState;->REQUEST_PENDING:Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol$ProtocolState;
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v22
+
+    invoke-direct {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->setState(Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol$ProtocolState;)V
+
+    .line 2187
+    :cond_32f
+    :goto_32f
+    move-object/from16 v0, p0
+
+    move-object v1, v15
+
+    invoke-direct {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->sendBTMessage(Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;)V
+
+    .line 2189
+    const/16 v22, 0x1
+
+    move/from16 v0, p1
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_726
+
+    .line 2190
+    const-string v22, "ELEMENT_ID_RenderShowUiRequest"
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->DDEBUG(Ljava/lang/String;)V
+
+    goto/16 :goto_4a
+
+    .line 1897
+    .end local v11           #indexLen:[B
+    .end local v12           #isLatin:Z
+    .end local v18           #timeAgo:Ljava/lang/String;
+    .end local v19           #totalLen:[B
+    .end local v20           #unreadLen:[B
+    .end local v21           #useSif:Z
+    :cond_344
+    const/16 v22, 0x2
+
+    move/from16 v0, p1
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_46b
+
+    .line 1898
+    invoke-direct/range {p0 .. p0}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getMode()I
+
+    move-result v22
+
+    if-nez v22, :cond_3d2
+
+    .line 1899
+    move-object/from16 v0, p0
+
+    move/from16 v1, p5
+
+    invoke-direct {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getIndexFromIcon(I)I
+
+    move-result v10
+
+    .line 1915
+    :cond_35a
+    :goto_35a
+    new-instance v22, Ljava/lang/StringBuilder;
+
+    const-string v23, "ELEMENT_ID_RenderShowStausBarRequest "
+
+    invoke-direct/range {v22 .. v23}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    move-object/from16 v0, v22
+
+    move/from16 v1, p5
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    const-string v23, ", iconIndex: "
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    move-object/from16 v0, v22
+
+    move v1, v10
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    invoke-virtual/range {v22 .. v22}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->DDEBUG(Ljava/lang/String;)V
+
+    .line 1916
+    const/16 v22, 0x21
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->setElementId(I)V
+
+    .line 1918
+    const/16 v22, -0x1
+
+    move v0, v10
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_3ad
+
+    .line 1919
+    invoke-direct/range {p0 .. p0}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getMode()I
+
+    move-result v22
+
+    const/16 v23, 0x1
+
+    move/from16 v0, v22
+
+    move/from16 v1, v23
+
+    if-eq v0, v1, :cond_466
+
+    .line 1921
+    const/16 p5, 0x0
+
+    .line 1922
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mMsgQ:Ljava/util/List;
+
+    move-object/from16 v22, v0
+
+    invoke-interface/range {v22 .. v22}, Ljava/util/List;->size()I
+
+    move-result p2
+
+    .line 1923
+    move/from16 v7, p2
+
+    .line 1924
+    .local v7, i:I
+    const/16 p3, 0x0
+
+    move v8, v7
+
+    .line 1925
+    .end local v7           #i:I
+    .local v8, i:I
+    :goto_3a9
+    add-int/lit8 v7, v8, -0x1
+
+    .end local v8           #i:I
+    .restart local v7       #i:I
+    if-gtz v8, :cond_44c
+
+    .line 1936
+    .end local v7           #i:I
+    :cond_3ad
+    :goto_3ad
+    new-instance v22, Ljava/lang/StringBuilder;
+
+    const-string v23, "addAnnounce, state: "
+
+    invoke-direct/range {v22 .. v23}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-direct/range {p0 .. p0}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getState()Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol$ProtocolState;
+
+    move-result-object v23
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    const-string v23, ", index: "
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    move-object/from16 v0, v22
+
+    move v1, v10
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    invoke-virtual/range {v22 .. v22}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->DDEBUG(Ljava/lang/String;)V
+
+    goto/16 :goto_60
+
+    .line 1900
+    :cond_3d2
+    invoke-direct/range {p0 .. p0}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getMode()I
+
+    move-result v22
+
+    const/16 v23, 0x1
+
+    move/from16 v0, v22
+
+    move/from16 v1, v23
+
+    if-ne v0, v1, :cond_35a
+
+    .line 1901
+    new-instance v22, Ljava/lang/StringBuilder;
+
+    const-string v23, "** ModePlugin, iconId: "
+
+    invoke-direct/range {v22 .. v23}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    move-object/from16 v0, v22
+
+    move/from16 v1, p5
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    const-string v23, ", mLastSelected: "
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    move-object/from16 v0, p0
+
+    iget v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mLastSelectedPluginId:I
+
+    move/from16 v23, v0
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    invoke-virtual/range {v22 .. v22}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->BDEBUG(Ljava/lang/String;)V
+
+    .line 1902
+    move/from16 v9, p5
+
+    .line 1903
+    .local v9, iconIdForAnnounce:I
+    move-object/from16 v0, p0
+
+    iget v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mLastSelectedPluginId:I
+
+    move/from16 p5, v0
+
+    .line 1904
+    const/4 v10, -0x1
+
+    .line 1905
+    sget-object v22, Lcom/sonyericsson/extras/liveview/JerryPluginData;->singleton:Lcom/sonyericsson/extras/liveview/JerryPluginData;
+
+    if-eqz v22, :cond_423
+
+    .line 1906
+    sget-object v22, Lcom/sonyericsson/extras/liveview/JerryPluginData;->singleton:Lcom/sonyericsson/extras/liveview/JerryPluginData;
+
+    move-object/from16 v0, p0
+
+    iget v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mPluginLevel:I
+
+    move/from16 v23, v0
+
+    move-object/from16 v0, v22
+
+    move/from16 v1, p5
+
+    move/from16 v2, v23
+
+    invoke-virtual {v0, v1, v2}, Lcom/sonyericsson/extras/liveview/JerryPluginData;->getPluginIndexById(II)I
+
+    move-result v10
+
+    .line 1908
+    :cond_423
+    new-instance v22, Ljava/lang/StringBuilder;
+
+    const-string v23, "** ModePlugin, iconIndex: "
+
+    invoke-direct/range {v22 .. v23}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    move-object/from16 v0, v22
+
+    move v1, v10
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    invoke-virtual/range {v22 .. v22}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->BDEBUG(Ljava/lang/String;)V
+
+    .line 1909
+    move-object/from16 v0, p0
+
+    iget v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mLastSelectedPluginId:I
+
+    move/from16 v22, v0
+
+    if-eqz v22, :cond_449
+
+    if-lez v9, :cond_35a
+
+    const/16 v22, 0xb
+
+    move v0, v9
+
+    move/from16 v1, v22
+
+    if-ge v0, v1, :cond_35a
+
+    .line 1911
+    :cond_449
+    const/4 v14, 0x1
+
+    goto/16 :goto_35a
+
+    .line 1926
+    .end local v9           #iconIdForAnnounce:I
+    .restart local v7       #i:I
+    :cond_44c
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mMsgQ:Ljava/util/List;
+
+    move-object/from16 v22, v0
+
+    move-object/from16 v0, v22
+
+    move v1, v7
+
+    invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Lcom/sonyericsson/extras/liveview/JerryAnnouncementObject;
+
+    invoke-virtual {v3}, Lcom/sonyericsson/extras/liveview/JerryAnnouncementObject;->getRead()Z
+
+    move-result v22
+
+    if-nez v22, :cond_744
+
+    .line 1927
+    add-int/lit8 p3, p3, 0x1
+
+    move v8, v7
+
+    .end local v7           #i:I
+    .restart local v8       #i:I
+    goto/16 :goto_3a9
+
+    .line 1932
+    .end local v8           #i:I
+    :cond_466
+    const/16 p5, 0x0
+
+    .line 1933
+    const/4 v14, 0x1
+
+    goto/16 :goto_3ad
+
+    .line 1938
+    :cond_46b
+    const/16 v22, 0x4
+
+    move/from16 v0, p1
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_4c6
+
+    .line 1939
+    const/16 v22, 0x1a
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->setElementId(I)V
+
+    .line 1940
+    move-object/from16 v0, p0
+
+    move/from16 v1, p5
+
+    invoke-direct {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->isIconClickable(I)Z
+
+    move-result v5
+
+    .line 1941
+    new-instance v22, Ljava/lang/StringBuilder;
+
+    const-string v23, "__isIconClickable "
+
+    invoke-direct/range {v22 .. v23}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    move-object/from16 v0, v22
+
+    move/from16 v1, p5
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    const-string v23, ": "
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    move-object/from16 v0, v22
+
+    move v1, v5
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    const-string v23, ", mode: "
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    invoke-direct/range {p0 .. p0}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getMode()I
+
+    move-result v23
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    const-string v23, ", currentIndex: "
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    move-object/from16 v0, p0
+
+    iget v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mCurrentIconIndex:I
+
+    move/from16 v23, v0
+
+    invoke-virtual/range {v22 .. v23}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v22
+
+    invoke-virtual/range {v22 .. v22}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v22
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->DDEBUG(Ljava/lang/String;)V
+
+    goto/16 :goto_60
+
+    .line 1944
+    :cond_4c6
+    const-string v22, "ERROR in renderShowUi"
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->DDEBUG(Ljava/lang/String;)V
+
+    goto/16 :goto_60
+
+    .line 1950
+    :cond_4cd
+    const/16 v22, 0x50
+
+    move/from16 v0, p5
+
+    move/from16 v1, v22
+
+    if-eq v0, v1, :cond_4dd
+
+    const/16 v22, 0x51
+
+    move/from16 v0, p5
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_4e7
+
+    .line 1951
+    :cond_4dd
+    move-object/from16 v0, p0
+
+    move/from16 v1, p5
+
+    invoke-direct {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getIndexFromIcon(I)I
+
+    move-result v10
+
+    goto/16 :goto_8b
+
+    .line 1952
+    :cond_4e7
+    invoke-direct/range {p0 .. p0}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->getMode()I
+
+    move-result v22
+
+    const/16 v23, 0x1
+
+    move/from16 v0, v22
+
+    move/from16 v1, v23
+
+    if-ne v0, v1, :cond_8b
+
+    .line 1953
+    const/16 v22, 0x12b
+
+    move/from16 v0, p5
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_507
+
+    .line 1954
+    move-object/from16 v0, p0
+
+    iget v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mNumberOfIcons:I
+
+    move/from16 v22, v0
+
+    const/16 v23, 0x2
+
+    sub-int v10, v22, v23
+
+    goto/16 :goto_8b
+
+    .line 1955
+    :cond_507
+    const/16 v22, 0x18f
+
+    move/from16 v0, p5
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_51b
+
+    .line 1956
+    move-object/from16 v0, p0
+
+    iget v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mNumberOfIcons:I
+
+    move/from16 v22, v0
+
+    const/16 v23, 0x1
+
+    sub-int v10, v22, v23
+
+    goto/16 :goto_8b
+
+    .line 1958
+    :cond_51b
+    sget-object v22, Lcom/sonyericsson/extras/liveview/JerryPluginData;->singleton:Lcom/sonyericsson/extras/liveview/JerryPluginData;
+
+    if-eqz v22, :cond_8b
+
+    if-nez v14, :cond_8b
+
+    .line 1959
+    sget-object v22, Lcom/sonyericsson/extras/liveview/JerryPluginData;->singleton:Lcom/sonyericsson/extras/liveview/JerryPluginData;
+
+    move-object/from16 v0, p0
+
+    iget v0, v0, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->mPluginLevel:I
+
+    move/from16 v23, v0
+
+    move-object/from16 v0, v22
+
+    move/from16 v1, p5
+
+    move/from16 v2, v23
+
+    invoke-virtual {v0, v1, v2}, Lcom/sonyericsson/extras/liveview/JerryPluginData;->getPluginIndexById(II)I
+
+    move-result v10
+
+    goto/16 :goto_8b
+
+    .line 1969
+    :cond_535
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    goto/16 :goto_b8
+
+    .line 1999
+    .restart local v11       #indexLen:[B
+    .restart local v19       #totalLen:[B
+    .restart local v20       #unreadLen:[B
+    :cond_53f
+    or-int/lit16 v10, v10, 0x80
+
+    goto/16 :goto_15f
+
+    .line 2023
+    .restart local v12       #isLatin:Z
+    .restart local v21       #useSif:Z
+    :cond_543
+    const/16 v22, 0x1
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    goto/16 :goto_1df
+
+    .line 2033
+    .restart local v4       #buffer:[B
+    :catch_54d
+    move-exception v22
+
+    move-object/from16 v6, v22
+
+    .line 2034
+    .local v6, e:Ljava/io/UnsupportedEncodingException;
+    invoke-virtual {v6}, Ljava/io/UnsupportedEncodingException;->printStackTrace()V
+
+    goto/16 :goto_1f4
+
+    .line 2041
+    .end local v6           #e:Ljava/io/UnsupportedEncodingException;
+    .restart local v13       #lenBuffer:[B
+    :cond_555
+    add-int/lit8 v17, v16, 0x1
+
+    .end local v16           #step:I
+    .local v17, step:I
+    aget-byte v22, v4, v16
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    move/from16 v16, v17
+
+    .end local v17           #step:I
+    .restart local v16       #step:I
+    goto/16 :goto_215
+
+    .line 2045
+    .end local v4           #buffer:[B
+    .end local v13           #lenBuffer:[B
+    :cond_563
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2046
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    goto/16 :goto_21f
+
+    .line 2050
+    :cond_575
+    if-eqz p6, :cond_5c6
+
+    invoke-static/range {p6 .. p6}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v22
+
+    if-nez v22, :cond_5c6
+
+    .line 2051
+    const/16 v22, 0x1
+
+    move/from16 v0, v22
+
+    new-array v0, v0, [B
+
+    move-object v4, v0
+
+    .line 2053
+    .restart local v4       #buffer:[B
+    const/16 v22, 0x65
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v22
+
+    move-object/from16 v2, p6
+
+    invoke-direct {v0, v1, v2}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->renderTextAsSimpleImageFormat(ILjava/lang/String;)[B
+
+    move-result-object v4
+
+    .line 2055
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->convertInt(I)[B
+
+    move-result-object v13
+
+    .line 2056
+    .restart local v13       #lenBuffer:[B
+    const/16 v22, 0x2
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2057
+    const/16 v22, 0x3
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2058
+    const/16 v16, 0x0
+
+    .line 2059
+    :goto_5b1
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move/from16 v0, v16
+
+    move/from16 v1, v22
+
+    if-ge v0, v1, :cond_21f
+
+    .line 2060
+    aget-byte v22, v4, v16
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2061
+    add-int/lit8 v16, v16, 0x1
+
+    goto :goto_5b1
+
+    .line 2065
+    .end local v4           #buffer:[B
+    .end local v13           #lenBuffer:[B
+    :cond_5c6
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2066
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    goto/16 :goto_21f
+
+    .line 2078
+    .restart local v4       #buffer:[B
+    .restart local v18       #timeAgo:Ljava/lang/String;
+    :catch_5d8
+    move-exception v22
+
+    move-object/from16 v6, v22
+
+    .line 2079
+    .restart local v6       #e:Ljava/io/UnsupportedEncodingException;
+    invoke-virtual {v6}, Ljava/io/UnsupportedEncodingException;->printStackTrace()V
+
+    goto/16 :goto_23c
+
+    .line 2086
+    .end local v6           #e:Ljava/io/UnsupportedEncodingException;
+    .restart local v13       #lenBuffer:[B
+    :cond_5e0
+    add-int/lit8 v17, v16, 0x1
+
+    .end local v16           #step:I
+    .restart local v17       #step:I
+    aget-byte v22, v4, v16
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    move/from16 v16, v17
+
+    .end local v17           #step:I
+    .restart local v16       #step:I
+    goto/16 :goto_25d
+
+    .line 2090
+    .end local v4           #buffer:[B
+    .end local v13           #lenBuffer:[B
+    :cond_5ee
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2091
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    goto/16 :goto_267
+
+    .line 2096
+    .end local v18           #timeAgo:Ljava/lang/String;
+    :cond_600
+    const/4 v4, 0x0
+
+    check-cast v4, [B
+
+    .line 2097
+    .restart local v4       #buffer:[B
+    move-object/from16 v0, p0
+
+    move-wide/from16 v1, p7
+
+    invoke-direct {v0, v1, v2}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->timeAgo(J)Ljava/lang/String;
+
+    move-result-object v18
+
+    .line 2098
+    .restart local v18       #timeAgo:Ljava/lang/String;
+    if-eqz v18, :cond_64f
+
+    .line 2100
+    const/16 v22, 0x64
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v22
+
+    move-object/from16 v2, v18
+
+    invoke-direct {v0, v1, v2}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->renderTextAsSimpleImageFormat(ILjava/lang/String;)[B
+
+    move-result-object v4
+
+    .line 2102
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->convertInt(I)[B
+
+    move-result-object v13
+
+    .line 2103
+    .restart local v13       #lenBuffer:[B
+    const/16 v22, 0x2
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2104
+    const/16 v22, 0x3
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2105
+    const/16 v16, 0x0
+
+    .line 2106
+    :goto_63a
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move/from16 v0, v16
+
+    move/from16 v1, v22
+
+    if-ge v0, v1, :cond_267
+
+    .line 2107
+    aget-byte v22, v4, v16
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2108
+    add-int/lit8 v16, v16, 0x1
+
+    goto :goto_63a
+
+    .line 2112
+    .end local v13           #lenBuffer:[B
+    :cond_64f
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2113
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    goto/16 :goto_267
+
+    .line 2123
+    :catch_661
+    move-exception v22
+
+    move-object/from16 v6, v22
+
+    .line 2124
+    .restart local v6       #e:Ljava/io/UnsupportedEncodingException;
+    invoke-virtual {v6}, Ljava/io/UnsupportedEncodingException;->printStackTrace()V
+
+    goto/16 :goto_282
+
+    .line 2131
+    .end local v6           #e:Ljava/io/UnsupportedEncodingException;
+    .restart local v13       #lenBuffer:[B
+    :cond_669
+    add-int/lit8 v17, v16, 0x1
+
+    .end local v16           #step:I
+    .restart local v17       #step:I
+    aget-byte v22, v4, v16
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    move/from16 v16, v17
+
+    .end local v17           #step:I
+    .restart local v16       #step:I
+    goto/16 :goto_2a3
+
+    .line 2135
+    .end local v4           #buffer:[B
+    .end local v13           #lenBuffer:[B
+    :cond_677
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2136
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    goto/16 :goto_2ad
+
+    .line 2141
+    :cond_689
+    const/4 v4, 0x0
+
+    check-cast v4, [B
+
+    .line 2142
+    .restart local v4       #buffer:[B
+    if-eqz p9, :cond_6f3
+
+    invoke-virtual/range {p9 .. p9}, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->getTextIcon()Ljava/lang/String;
+
+    move-result-object v22
+
+    if-eqz v22, :cond_6f3
+
+    .line 2144
+    move-object/from16 v0, p9
+
+    iget-boolean v0, v0, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->isMenuIcon:Z
+
+    move/from16 v22, v0
+
+    if-eqz v22, :cond_6e2
+
+    .line 2145
+    const/16 v22, 0x68
+
+    invoke-virtual/range {p9 .. p9}, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->getTextIcon()Ljava/lang/String;
+
+    move-result-object v23
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v22
+
+    move-object/from16 v2, v23
+
+    invoke-direct {v0, v1, v2}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->renderTextAsSimpleImageFormat(ILjava/lang/String;)[B
+
+    move-result-object v4
+
+    .line 2148
+    :goto_6ac
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->convertInt(I)[B
+
+    move-result-object v13
+
+    .line 2149
+    .restart local v13       #lenBuffer:[B
+    const/16 v22, 0x2
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2150
+    const/16 v22, 0x3
+
+    aget-byte v22, v13, v22
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2151
+    const/16 v16, 0x0
+
+    .line 2152
+    :goto_6cd
+    move-object v0, v4
+
+    array-length v0, v0
+
+    move/from16 v22, v0
+
+    move/from16 v0, v16
+
+    move/from16 v1, v22
+
+    if-ge v0, v1, :cond_2ad
+
+    .line 2153
+    aget-byte v22, v4, v16
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2154
+    add-int/lit8 v16, v16, 0x1
+
+    goto :goto_6cd
+
+    .line 2147
+    .end local v13           #lenBuffer:[B
+    :cond_6e2
+    const/16 v22, 0x66
+
+    invoke-virtual/range {p9 .. p9}, Lcom/sonyericsson/extras/liveview/utils/ElaineBitmap;->getTextIcon()Ljava/lang/String;
+
+    move-result-object v23
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v22
+
+    move-object/from16 v2, v23
+
+    invoke-direct {v0, v1, v2}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->renderTextAsSimpleImageFormat(ILjava/lang/String;)[B
+
+    move-result-object v4
+
+    goto :goto_6ac
+
+    .line 2158
+    :cond_6f3
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    .line 2159
+    const/16 v22, 0x0
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    goto/16 :goto_2ad
+
+    .line 2172
+    .end local v4           #buffer:[B
+    .restart local v3       #bitmap:[B
+    :cond_705
+    add-int/lit8 v17, v16, 0x1
+
+    .end local v16           #step:I
+    .restart local v17       #step:I
+    aget-byte v22, v3, v16
+
+    move-object v0, v15
+
+    move/from16 v1, v22
+
+    invoke-virtual {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocolMsg;->addPayloadByte(I)V
+
+    move/from16 v16, v17
+
+    .end local v17           #step:I
+    .restart local v16       #step:I
+    goto/16 :goto_2d1
+
+    .line 2184
+    .end local v3           #bitmap:[B
+    :cond_713
+    const/16 v22, 0x4
+
+    move/from16 v0, p1
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_32f
+
+    .line 2185
+    sget-object v22, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol$ProtocolState;->READY:Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol$ProtocolState;
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v22
+
+    invoke-direct {v0, v1}, Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol;->setState(Lcom/sonyericsson/extras/liveview/btdisplay/JerryProtocol$ProtocolState;)V
+
+    goto/16 :goto_32f
+
+    .line 2192
+    :cond_726
+    const/16 v22, 0x2
+
+    move/from16 v0, p1
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_735
+
+    .line 2193
+    const-string v22, "ELEMENT_ID_RenderShowStausBarRequest"
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->DDEBUG(Ljava/lang/String;)V
+
+    goto/16 :goto_4a
+
+    .line 2195
+    :cond_735
+    const/16 v22, 0x4
+
+    move/from16 v0, p1
+
+    move/from16 v1, v22
+
+    if-ne v0, v1, :cond_4a
+
+    .line 2196
+    const-string v22, "ELEMENT_ID_GetIconIndexResponse"
+
+    invoke-static/range {v22 .. v22}, Lcom/sonyericsson/extras/liveview/utils/ElaineUtils;->DDEBUG(Ljava/lang/String;)V
+
+    goto/16 :goto_4a
+
+    .end local v11           #indexLen:[B
+    .end local v12           #isLatin:Z
+    .end local v18           #timeAgo:Ljava/lang/String;
+    .end local v19           #totalLen:[B
+    .end local v20           #unreadLen:[B
+    .end local v21           #useSif:Z
+    .restart local v7       #i:I
+    :cond_744
+    move v8, v7
+
+    .end local v7           #i:I
+    .restart local v8       #i:I
+    goto/16 :goto_3a9
+.end method
